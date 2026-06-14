@@ -38,7 +38,7 @@ Here are the visual proofs of the working application required for the submissio
 
 1. Clone the repository:
 ```bash
-git clone https://github.com/your-username/stellargig.git
+git clone https://github.com/izath-phb/stellargig.git
 cd stellargig
 ```
 
