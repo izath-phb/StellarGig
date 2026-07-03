@@ -50,14 +50,14 @@ cd stellargig
 
 2. Install dependencies:
 ```bash
-npm install
+yarn install
 ```
 
 ## How to Run Locally
 
 Start the Vite development server:
 ```bash
-npm run dev
+yarn dev
 ```
 Then, open the provided localhost URL in your browser.
 
