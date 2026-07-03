@@ -2,37 +2,43 @@
 
 **White Belt Stellar Payment dApp**
 
-StellarGig Level 1 is a simple testnet application for connecting Freighter Wallet, checking XLM balances, and sending XLM transactions on the Stellar Testnet. This is built as the foundation for a cross-border payment starter dApp for freelancers.
+StellarGig is a cross-border escrow platform for freelancers. This application (Level 2 Yellow Belt) demonstrates Multi-Wallet connection, Soroban Smart Contract integration, Real-Time Event Listening, and comprehensive Error Handling on the Stellar Testnet.
 
-## Features
-- Connect and disconnect Freighter Wallet
-- Display public key and current XLM balance
-- Send XLM transactions on Stellar Testnet
-- Real-time transaction success/failure feedback
-- Direct links to Stellar Expert Testnet Explorer for transaction verification
+## Level 2 Features
+- **Multi-Wallet Integration**: Support for Freighter, Albedo, and xBull using `StellarWalletsKit`.
+- **Soroban Smart Contract**: A custom Counter contract built in Rust and deployed to the Stellar Testnet.
+- **Contract Dashboard**: Frontend integration to Read (get_count) and Write (increment, reset) to the Soroban contract.
+- **Real-Time Events**: Activity Feed that polls the blockchain to show real-time transactions and events.
+- **Robust Error Handling**: Graceful degradation and modern Alert components for user rejections, unfunded accounts, and missing extensions.
 
 ## Tech Stack
-- React.js 18
-- Vite
-- Vanilla CSS (Custom modern fintech UI)
-- @stellar/freighter-api
-- @stellar/stellar-sdk
+- React.js 18 + Vite
+- Vanilla CSS (Modern Fintech UI - Tailwind-inspired)
+- `@creit.tech/stellar-wallets-kit` (Multi-Wallet)
+- `@stellar/stellar-sdk` (Soroban RPC integration)
+- Rust + Soroban CLI (Smart Contracts)
 
-## Screenshots
+## Deployed Contract Information
+- **Contract Name**: StellarGigCounter
+- **Contract Address**: `CDFGTCZ3UGEADUXGVVPCAWFCCI3B3LUB44AXX5OHF6MXEO2DISOCPF5W`
+- **Contract Call Hash**: `ceae36c6bc6f54ac8f85ba037d1188d68022f66d5ed2c9603496eaf766ed782c`
 
-Here are the visual proofs of the working application required for the submission:
+## Live Demo
+[Insert Vercel Deployment URL Here]
 
-### 1. Wallet Connected State
-*(Take a screenshot of the dashboard showing the connected wallet interface)*
-![Wallet Connected](screenshots/wallet-connected.png)
+## Level 2 Screenshots
 
-### 2. Balance Displayed
-*(Take a screenshot clearly showing the XLM Balance number on the screen)*
-![Balance Displayed](screenshots/balance-displayed.png)
+### 1. Multi Wallet Selection
+*(Screenshot showing the Wallet Selection Modal with Freighter, Albedo, and xBull)*
+![Multi Wallet](screenshots/multi-wallet.png)
 
-### 3. Successful Testnet Transaction & Result Shown
-*(Take a screenshot after sending XLM where the green success alert and Transaction Hash are visible to the user)*
-![Successful Transaction Result](screenshots/transaction-success.png)
+### 2. Contract Dashboard & Real-Time Feed
+*(Screenshot showing the Contract Dashboard, Current Counter Value, and the Activity Feed on the left)*
+![Contract Dashboard](screenshots/contract-dashboard.png)
+
+### 3. Error Handling
+*(Screenshot showing an Alert Card when a user rejects a transaction or doesn't have a wallet installed)*
+![Error Handling](screenshots/error-handling.png)
 
 ## How to Install
 
