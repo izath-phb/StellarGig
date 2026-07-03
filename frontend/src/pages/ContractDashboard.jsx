@@ -2,9 +2,10 @@ import React, { useState, useEffect } from 'react';
 import { RefreshCw, Plus, RotateCcw, Box, Hash, Loader2 } from 'lucide-react';
 import { invokeContractMethod, getCounterValue, CONTRACT_ID, listenToEvents } from '../services/contractService';
 import AlertCard from '../components/AlertCard';
+import ActivityFeed from '../components/ActivityFeed';
 import * as StellarSdk from "@stellar/stellar-sdk";
 
-const ContractDashboard = ({ isConnected, publicKey, walletId, addActivity }) => {
+const ContractDashboard = ({ isConnected, publicKey, walletId, addActivity, activities = [] }) => {
   const [count, setCount] = useState("Loading...");
   const [isIncrementing, setIsIncrementing] = useState(false);
   const [isResetting, setIsResetting] = useState(false);
@@ -194,6 +195,9 @@ const ContractDashboard = ({ isConnected, publicKey, walletId, addActivity }) =>
           </button>
         </div>
       </div>
+      
+      {/* Activity Feed for Smart Contract events */}
+      <ActivityFeed activities={activities} />
     </div>
   );
 };

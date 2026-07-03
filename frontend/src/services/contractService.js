@@ -1,5 +1,5 @@
 import * as StellarSdk from "@stellar/stellar-sdk";
-import { kit } from "./walletService";
+import { kit, server } from "./walletService";
 import { WalletNetwork } from "@creit.tech/stellar-wallets-kit";
 
 // TODO: Replace with deployed contract ID
@@ -40,8 +40,7 @@ export const getCounterValue = async () => {
 
 export const invokeContractMethod = async (publicKey, methodName, walletId) => {
   try {
-    const accountResponse = await sorobanServer.getAccount(publicKey);
-    const account = new StellarSdk.Account(publicKey, accountResponse.sequence);
+    const account = await server.loadAccount(publicKey);
     
     const contract = new StellarSdk.Contract(CONTRACT_ID);
     const fee = await sorobanServer.getLatestLedger().then(() => "1000"); // Basic fee estimation
@@ -51,23 +50,16 @@ export const invokeContractMethod = async (publicKey, methodName, walletId) => {
       .setTimeout(30)
       .build();
 
-    // Simulate to get footprint and resource costs
-    const simResponse = await sorobanServer.simulateTransaction(tx);
-    if (simResponse.error) {
-      throw new Error(`Simulation failed: ${simResponse.error}`);
-    }
-
-    // Assemble the transaction with simulation data
-    const assembledTx = StellarSdk.assembleTransaction(tx, networkPassphrase, simResponse).build();
+    // Prepare the transaction (simulates and adds footprint/resources)
+    const preparedTx = await sorobanServer.prepareTransaction(tx);
 
     // Sign the transaction with the wallet
     kit.setWallet(walletId);
-    const { signedXDR } = await kit.sign({
-      xdr: assembledTx.toXDR(),
-      network: WalletNetwork.TESTNET
+    const { signedTxXdr } = await kit.signTransaction(preparedTx.toXDR(), {
+      networkPassphrase
     });
     
-    const signedTransaction = StellarSdk.TransactionBuilder.fromXDR(signedXDR, networkPassphrase);
+    const signedTransaction = StellarSdk.TransactionBuilder.fromXDR(signedTxXdr, networkPassphrase);
     
     // Submit
     const sendResponse = await sorobanServer.sendTransaction(signedTransaction);
