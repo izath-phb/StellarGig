@@ -35,10 +35,10 @@ export const connectKitWallet = async (walletId) => {
     
     // Explicit Error Handling Level 2
     if (error.message?.toLowerCase().includes("installed") || error.message?.toLowerCase().includes("not found")) {
-      throw new Error(`WALLET_NOT_INSTALLED: ${walletId} Wallet tidak ditemukan di browser Anda.`);
+      throw new Error(`WALLET_NOT_INSTALLED: ${walletId} Wallet was not found in your browser.`);
     }
     
-    throw new Error(error.message || "Gagal menghubungkan wallet");
+    throw new Error(error.message || "Failed to connect wallet");
   }
 };
 
@@ -91,11 +91,11 @@ export const sendXlmWithKit = async (sourcePublicKey, destinationAddress, amount
   } catch (error) {
     // Explicit Error Handling Level 2
     if (error.message?.toLowerCase().includes("reject") || error.message?.toLowerCase().includes("decline") || error.message?.toLowerCase().includes("cancel")) {
-      throw new Error("TRANSACTION_REJECTED: Transaksi dibatalkan oleh pengguna.");
+      throw new Error("TRANSACTION_REJECTED: Transaction was rejected by the user.");
     }
     
     if (error?.response?.data?.extras?.result_codes?.operations?.includes("op_underfunded")) {
-       throw new Error("INSUFFICIENT_BALANCE: Saldo XLM tidak mencukupi untuk transaksi ini.");
+       throw new Error("INSUFFICIENT_BALANCE: Insufficient XLM balance for this transaction.");
     }
     
     throw error;

@@ -30,7 +30,7 @@ StellarGig is a cross-border escrow platform for freelancers. This application (
 
 ### 1. Multi Wallet Selection
 *(Screenshot showing the Wallet Selection Modal with Freighter, Albedo, and xBull)*
-![Multi Wallet](screenshots/multi-wallet.png)
+![Multi Wallet](screenshots/wallet-options-available.png)
 
 ### 2. Contract Dashboard & Real-Time Feed
 *(Screenshot showing the Contract Dashboard, Current Counter Value, and the Activity Feed on the left)*

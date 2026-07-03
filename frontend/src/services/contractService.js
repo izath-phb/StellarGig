@@ -85,7 +85,7 @@ export const invokeContractMethod = async (publicKey, methodName, walletId) => {
   } catch (error) {
     // Explicit Error Handling Level 2
     if (error.message?.toLowerCase().includes("reject") || error.message?.toLowerCase().includes("decline") || error.message?.toLowerCase().includes("cancel")) {
-      throw new Error("TRANSACTION_REJECTED: Transaksi dibatalkan oleh pengguna.");
+      throw new Error("TRANSACTION_REJECTED: Transaction was rejected by the user.");
     }
     throw error;
   }
