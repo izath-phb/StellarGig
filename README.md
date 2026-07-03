@@ -24,7 +24,7 @@ StellarGig is a cross-border escrow platform for freelancers. This application (
 - **Contract Call Hash**: `13e522025e962c1b5ce3c6444f6a493297ab28e0d28c2d13e98242b656bffefc`
 
 ## Live Demo
-[Insert Vercel Deployment URL Here]
+[StellarGig Live Demo](https://stellar-gig.vercel.app/)
 
 ## Level 2 Screenshots
 
